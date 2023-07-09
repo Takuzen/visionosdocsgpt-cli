@@ -32,6 +32,6 @@ This is made to be a tool for helping visionOS developers build great applicatio
 
 Then you should get reply (output) like this:
 
-  Q: What is Apple visionOS?. <br/>
-  A: I could not find an answer.
+ Q: What is Apple visionOS? <br/>
+ A: Apple visionOS is the operating system that powers Vision Pro. It is used to build immersive apps and games for spatial computing.
     

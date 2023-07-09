@@ -89,12 +89,12 @@ def query_message(
 ) -> str:
     """Return a message for GPT, with relevant source texts pulled from a dataframe."""
     results = strings_ranked_by_relatedness(query)
-    introduction = 'Use the below articles on the 2022 Winter Olympics to answer the subsequent question. If the answer cannot be found in the articles, write "I could not find an answer."'
+    introduction = 'Use the below articles on Apple visionOS to answer the subsequent question. If the answer cannot be found in the articles, write "I could not find an answer."'
     question = f"\n\nQuestion: {query}"
     message = introduction
     for match in results["matches"]:
         string = match["metadata"]["text"]
-        next_article = f'\n\nWikipedia article section:\n"""\n{string}\n"""'
+        next_article = f'\n\nvisionOS document section:\n"""\n{string}\n"""'
         if (
             num_tokens(message + next_article + question, model=model)
             > token_budget
@@ -115,7 +115,7 @@ def ask(
     if print_message:
         print(message)
     messages = [
-        {"role": "system", "content": "You answer questions about the 2022 Winter Olympics."},
+        {"role": "system", "content": "You answer questions about Apple VisionOS."},
         {"role": "user", "content": message},
     ]
     response = openai.ChatCompletion.create(
@@ -126,6 +126,10 @@ def ask(
     response_message = response["choices"][0]["message"]["content"]
     return response_message
 
-query = 'What is Apple visionOS?.'
-res = ask(query)
-print(f"Q: {query}\nA: {res}")
+# make index
+load_vectors()
+
+# ask question
+query = 'What is Apple visionOS?'
+res = ask(query, print_message=True)
+print(f"A: {res}")
