@@ -5,7 +5,7 @@ import tiktoken
 import ast
 import pandas as pd
 from dotenv import load_dotenv
-from scipy import spatial
+import json
 
 # Configuration
 load_dotenv() # Load default environment variables (.env)
@@ -41,7 +41,7 @@ if table_name not in pinecone.list_indexes():
 index = pinecone.Index(table_name)
 
 def load_vectors():
-    print("loadig CSV file")
+    print("loading CSV file")
     embeddings_path = "./visionos_docs_2023_07_09.csv"
 
     df = pd.read_csv(embeddings_path)
@@ -130,6 +130,6 @@ def ask(
 load_vectors()
 
 # ask question
-query = 'What is Apple visionOS?'
+query = 'How to add a button to open full immersive space using swiftUI with visionOS?'
 res = ask(query, print_message=True)
 print(f"A: {res}")
