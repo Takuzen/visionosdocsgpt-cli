@@ -1,4 +1,4 @@
-# emb-vos-doc
+# visionOS GPT
 
 This is made to be a tool for helping visionOS developers build great application with the aid of ChatGPT which has the knowledge of the latest Apple's visionOS documentation.
 
