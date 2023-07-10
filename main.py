@@ -5,7 +5,6 @@ import tiktoken
 import ast
 import pandas as pd
 from dotenv import load_dotenv
-import json
 
 # Configuration
 load_dotenv() # Load default environment variables (.env)
