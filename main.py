@@ -26,23 +26,22 @@ GPT_MODEL = "gpt-3.5-turbo"
 # Initialize Pinecone
 pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
 
-# Create Pinecone index
-table_name = "visionos-docs-2023-07-09"
-dimension = 1536
+table_name = "visionos-docs-2023-07-10"
+dimension = 4608
 metric = "cosine"
 pod_type = "p1"
+
+# Create Pinecone index
 if table_name not in pinecone.list_indexes():
     print("Creating pinecone index")
-    pinecone.create_index(
-        table_name, dimension=dimension, metric=metric, pod_type=pod_type
-    )
+    pinecone.create_index(table_name, dimension=dimension, metric=metric, pod_type=pod_type)
 
 # Connect to the index
 index = pinecone.Index(table_name)
 
 def load_vectors():
     print("loading CSV file")
-    embeddings_path = "./visionos_docs_2023_07_09.csv"
+    embeddings_path = "./visionos_docs_2023_07_10.csv"
 
     df = pd.read_csv(embeddings_path)
 

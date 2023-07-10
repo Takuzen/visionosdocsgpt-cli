@@ -113,7 +113,7 @@ print(f"Total tokens in the text: {num_tokens(text)}")
 print(text)
 
 # Open the CSV file for writing
-with open('visionos_docs_2023_07_09.csv', 'w', newline='') as csvfile:
+with open('visionos_docs_2023_07_10.csv', 'w', newline='') as csvfile:
     # Create a CSV writer
     writer = csv.writer(csvfile)
 
