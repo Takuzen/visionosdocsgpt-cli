@@ -18,13 +18,7 @@ This is made to be a tool for helping visionOS developers build great applicatio
     PINECONE_ENVIRONMENT=...
     ```
 
-3. Run `scrapying.py` for generating CSV file like:
-
-    ```
-    $ python scraping.py
-    ```
-
-4. Run `main.py`:
+3. Run `main.py`:
 
     ```
     $ python main.py

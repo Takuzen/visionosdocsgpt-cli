@@ -1,8 +1,8 @@
 openai
-pinecone
+python-dotenv
+pinecone-client
 tiktoken
 pandas
-python-dotenv
 selenium
 webdriver_manager
 numpy
