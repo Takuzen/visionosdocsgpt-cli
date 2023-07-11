@@ -1,6 +1,8 @@
-openai==0.27.8
-python-dotenv==1.0.0
-pinecone-client
+openai
+pinecone
 tiktoken
 pandas
-scipy
+python-dotenv
+selenium
+webdriver_manager
+numpy
