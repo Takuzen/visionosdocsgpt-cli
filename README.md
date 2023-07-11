@@ -1,6 +1,6 @@
-# visionOS GPT
+# visionOS Docs GPT
 
-This is made to be a tool for helping visionOS developers build great application with the aid of ChatGPT which has the knowledge of the latest Apple's visionOS documentation.
+This is made to be a tool for helping visionOS developers build great application with the aid of ChatGPT which would answer your question based on the extended knowledge of the latest Apple's visionOS documentation.
 
 ## Initailization
 
@@ -34,4 +34,7 @@ Then you should get reply (output) like this:
 
  Q: What is Apple visionOS? <br/>
  A: Apple visionOS is the operating system that powers Vision Pro. It is used to build immersive apps and games for spatial computing.
-    
+
+## Usage
+
+Modify the string of constant *query* which locates in the very last lines of `main.py` to ask what you want to know about visionOS.

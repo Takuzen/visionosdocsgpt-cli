@@ -26,7 +26,7 @@ GPT_MODEL = "gpt-3.5-turbo"
 pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_ENVIRONMENT)
 
 table_name = "visionos-docs-2023-07-10"
-dimension = 4608
+dimension = 1536
 metric = "cosine"
 pod_type = "p1"
 
@@ -40,17 +40,16 @@ index = pinecone.Index(table_name)
 
 def load_vectors():
     print("loading CSV file")
-    embeddings_path = "./visionos_docs_2023_07_10.csv"
+    embeddings_path = "./visionos_docs_2023_07_10_embedding.csv"
 
     df = pd.read_csv(embeddings_path)
 
     # convert embeddings from CSV str type back to list type
     print("converting it to list type")
     df['embedding'] = df['embedding'].apply(ast.literal_eval)
-    # print(df)
 
     print("writing vectors")
-    vectors = [(f"id_{i}", row["embedding"], {"text":row["text"]}) for i, row in df.iterrows()]
+    vectors = [(str(row["id"]), row["embedding"]) for i, row in df.iterrows()]
     # print(vectors)
     for vector in vectors:
         index.upsert([vector])
@@ -90,8 +89,11 @@ def query_message(
     introduction = 'Use the below articles on Apple visionOS to answer the subsequent question. If the answer cannot be found in the articles, write "I could not find an answer."'
     question = f"\n\nQuestion: {query}"
     message = introduction
+    embeddings_path = "./visionos_docs_2023_07_10_text.csv"
+    df = pd.read_csv(embeddings_path)
     for match in results["matches"]:
-        string = match["metadata"]["text"]
+        match_id = int(match['id'])
+        string = df[df['id']==match_id]['text'].values[0]
         next_article = f'\n\nvisionOS document section:\n"""\n{string}\n"""'
         if (
             num_tokens(message + next_article + question, model=model)
@@ -129,5 +131,5 @@ load_vectors()
 
 # ask question
 query = 'How to add a button to open full immersive space using swiftUI with visionOS?'
-res = ask(query, print_message=True)
-print(f"A: {res}")
+res = ask(query, print_message=False)
+print(f"Q: {query}\nA: {res}")
