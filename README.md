@@ -31,4 +31,4 @@ Then you should get reply (output) like this:
 
 ## Usage
 
-Modify the string of constant *query* which locates in the very last lines of `main.py` to ask what you want to know about visionOS.
+Modify the string of constant `query` which locates in the very last lines of [main.py](main.py) to ask what you want to know about visionOS.
